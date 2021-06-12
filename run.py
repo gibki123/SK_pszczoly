@@ -1,3 +1,3 @@
-from wolf_sheep.server import server
+from bee_flower.server import server
 
 server.launch()
