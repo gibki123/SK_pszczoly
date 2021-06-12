@@ -1,10 +1,11 @@
 from mesa import Agent
 from wolf_sheep.random_walk import RandomWalker
+from bee_flowers.
 
 
 class Bee(RandomWalker):
 
-    
+class Flower_1()
 
 class Sheep(RandomWalker):
     """
