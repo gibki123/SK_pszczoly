@@ -13,8 +13,8 @@ from mesa import Model
 from mesa.space import MultiGrid
 from mesa.datacollection import DataCollector
 
-from wolf_sheep.agents import Sheep, Wolf, GrassPatch
-from wolf_sheep.schedule import RandomActivationByBreed
+from agents_bee.agents_bee import Bee, Flower_1, Flower_2, Flower_3
+from agents_bee.schedule import RandomActivationByBreed
 
 
 class BeeFlower(Model):
@@ -22,46 +22,42 @@ class BeeFlower(Model):
     Wolf-Sheep Predation Model
     """
 
-    height = 20
-    width = 20
+    height = 30
+    width = 30
 
-    initial_sheep = 100
-    initial_wolves = 50
+    initial_bees = 50
+    initial_flowers_1 = 20
+    initial_flowers_2 = 20
+    initial_flowers_3 = 20
 
-    sheep_reproduce = 0.04
-    wolf_reproduce = 0.05
-
-    wolf_gain_from_food = 20
-
-    grass = False
-    grass_regrowth_time = 30
-    sheep_gain_from_food = 4
+    flowers_1_reproduce = 0.05
+    flowers_2_reproduce = 0.05
+    flowers_3_reproduce = 0.05
 
     verbose = False  # Print-monitoring
 
     description = (
-        "A model for simulating wolf and sheep (predator-prey) ecosystem modelling."
+        "A model for simulating bee productive power based on flower species accumulation."
     )
 
     def __init__(
         self,
-        height=20,
-        width=20,
-        initial_sheep=100,
-        initial_wolves=50,
-        sheep_reproduce=0.04,
-        wolf_reproduce=0.05,
-        wolf_gain_from_food=20,
-        grass=False,
-        grass_regrowth_time=30,
-        sheep_gain_from_food=4,
+        height=30,
+        width=30,
+        initial_bees=50,
+        initial_flowers_1=20,
+        initial_flowers_2=20,
+        initial_flowers_3=20,
+        flowers_1_reproduce=0.05,
+        flowers_2_reproduce=0.05,
+        flowers_3_reproduce=0.05,
     ):
         """
         Create a new Wolf-Sheep model with the given parameters.
 
         Args:
-            initial_sheep: Number of sheep to start with
-            initial_wolves: Number of wolves to start with
+            initial_bees: Number of sheep to start with
+            initial_flowers_1: Number of wolves to start with
             sheep_reproduce: Probability of each sheep reproducing each step
             wolf_reproduce: Probability of each wolf reproducing each step
             wolf_gain_from_food: Energy a wolf gains from eating a sheep
@@ -74,14 +70,13 @@ class BeeFlower(Model):
         # Set parameters
         self.height = height
         self.width = width
-        self.initial_sheep = initial_sheep
-        self.initial_wolves = initial_wolves
-        self.sheep_reproduce = sheep_reproduce
-        self.wolf_reproduce = wolf_reproduce
-        self.wolf_gain_from_food = wolf_gain_from_food
-        self.grass = grass
-        self.grass_regrowth_time = grass_regrowth_time
-        self.sheep_gain_from_food = sheep_gain_from_food
+        self.initial_bees = initial_bees
+        self.initial_flowers_1 = initial_flowers_1
+        self.initial_flowers_2 = initial_flowers_2
+        self.initial_flowers_3 = initial_flowers_3
+        self.flowers_1_reproduce = flowers_1_reproduce
+        self.flowers_2_reproduce = flowers_2_reproduce
+        self.flowers_3_reproduce = flowers_3_reproduce
 
         self.schedule = RandomActivationByBreed(self)
         self.grid = MultiGrid(self.height, self.width, torus=True)
@@ -93,7 +88,7 @@ class BeeFlower(Model):
         )
 
         # Create sheep:
-        for i in range(self.initial_sheep):
+        for i in range(self.initial_bees):
             x = self.random.randrange(self.width)
             y = self.random.randrange(self.height)
             energy = self.random.randrange(2 * self.sheep_gain_from_food)
@@ -102,7 +97,7 @@ class BeeFlower(Model):
             self.schedule.add(sheep)
 
         # Create wolves
-        for i in range(self.initial_wolves):
+        for i in range(self.initial_flowers_1):
             x = self.random.randrange(self.width)
             y = self.random.randrange(self.height)
             energy = self.random.randrange(2 * self.wolf_gain_from_food)

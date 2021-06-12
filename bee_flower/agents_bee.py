@@ -18,7 +18,7 @@ class Bee(RandomWalker):
     def step(self):
         self.random_move()
 
-        
+
 
 class Flower_1(RandomStill):
     """
@@ -49,8 +49,6 @@ class Flower_3(RandomStill):
     def __init__(self, unique_id, pos, model, energy=None):
         super().__init__(unique_id, pos, model, moore=moore)
         self.energy = energy
-
-
 
 
 class Sheep(RandomWalker):
