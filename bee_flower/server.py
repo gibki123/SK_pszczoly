@@ -2,45 +2,47 @@ from mesa.visualization.ModularVisualization import ModularServer
 from mesa.visualization.modules import CanvasGrid, ChartModule
 from mesa.visualization.UserParam import UserSettableParameter
 
-from wolf_sheep.agents import Wolf, Sheep, GrassPatch
-from wolf_sheep.model import WolfSheep
+from bee_flower.agents_bee import Bee, Flower_1, Flower_2, Flower_3
+from bee_flower.model import BeeFlower
 
 
-def wolf_sheep_portrayal(agent):
+def bee_flower_portrayal(agent):
     if agent is None:
         return
 
     portrayal = {}
 
-    if type(agent) is Sheep:
-        portrayal["Shape"] = "wolf_sheep/resources/sheep.png"
-        # https://icons8.com/web-app/433/sheep
-        portrayal["scale"] = 0.9
+    if type(agent) is Flower_1:
+        portrayal["Shape"] = "bee_flower/resources/flower_1.png"
+        portrayal["scale"] = 0.1
+        portrayal["Layer"] = 0
+
+    if type(agent) is Flower_2:
+        portrayal["Shape"] = "bee_flower/resources/flower_2.png"
+        portrayal["scale"] = 0.1
+        portrayal["Layer"] = 0
+
+    if type(agent) is Flower_3:
+        portrayal["Shape"] = "bee_flower/resources/flower_3.png"
+        portrayal["scale"] = 0.1
+        portrayal["Layer"] = 0
+
+    if type(agent) is Bee:
+        portrayal["Shape"] = "wolf_sheep/resources/bee.png"
+        portrayal["scale"] = 0.1
         portrayal["Layer"] = 1
 
     elif type(agent) is Wolf:
         portrayal["Shape"] = "wolf_sheep/resources/wolf.png"
-        # https://icons8.com/web-app/36821/German-Shepherd
         portrayal["scale"] = 0.9
         portrayal["Layer"] = 2
         portrayal["text"] = round(agent.energy, 1)
         portrayal["text_color"] = "White"
 
-    elif type(agent) is GrassPatch:
-        if agent.fully_grown:
-            portrayal["Color"] = ["#00FF00", "#00CC00", "#009900"]
-        else:
-            portrayal["Color"] = ["#84e184", "#adebad", "#d6f5d6"]
-        portrayal["Shape"] = "rect"
-        portrayal["Filled"] = "true"
-        portrayal["Layer"] = 0
-        portrayal["w"] = 1
-        portrayal["h"] = 1
-
     return portrayal
 
 
-canvas_element = CanvasGrid(wolf_sheep_portrayal, 20, 20, 500, 500)
+canvas_element = CanvasGrid(bee_flower_portrayal, 20, 20, 500, 500)
 chart_element = ChartModule(
     [{"Label": "Wolves", "Color": "#AA0000"}, {"Label": "Sheep", "Color": "#666666"}]
 )
