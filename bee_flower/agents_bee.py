@@ -20,8 +20,9 @@ class Bee(RandomWalker):
         # If there is grass available, eat it
         this_cell = self.model.grid.get_cell_list_contents([self.pos])
         flower_patch = [obj for obj in this_cell if isinstance(obj, Flower_1)]
-        if flower_patch:
+        for i in flower_patch:
             self.pylek += 1
+            i.repr += 0.001
 
 
 
@@ -47,17 +48,12 @@ class Flower_1(RandomStill):
         living = True
         self.energy -= 1
 
-        # If there is grass available, eat it
-        this_cell = self.model.grid.get_cell_list_contents([self.pos])
-        bee_patch = [obj for obj in this_cell if isinstance(obj, Bee)]
-        if bee_patch:
-            self.energy += 50
-
         # Death
         if self.energy < 0:
             self.model.grid._remove_agent(self.pos, self)
             self.model.schedule.remove(self)
             living = False
+
         """
         elif self.random.random() + repr < self.model.flower_1_reproduce:
             x = self.random.randrange(self.width)
@@ -85,12 +81,6 @@ class Flower_2(RandomStill):
         living = True
         self.energy -= 1
 
-        # If there is grass available, eat it
-        this_cell = self.model.grid.get_cell_list_contents([self.pos])
-        bee_patch = [obj for obj in this_cell if isinstance(obj, Bee)]
-        if bee_patch:
-            self.energy += 50
-
         # Death
         if self.energy < 0:
             self.model.grid._remove_agent(self.pos, self)
@@ -110,12 +100,6 @@ class Flower_3(RandomStill):
     def step(self):
         living = True
         self.energy -= 1
-
-        # If there is grass available, eat it
-        this_cell = self.model.grid.get_cell_list_contents([self.pos])
-        bee_patch = [obj for obj in this_cell if isinstance(obj, Bee)]
-        if bee_patch:
-            self.energy += 50
 
         # Death
         if self.energy < 0:
