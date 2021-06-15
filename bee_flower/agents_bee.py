@@ -41,7 +41,7 @@ class Flower_1(RandomStill):
             self.model.schedule.remove(self)
             living = False
 
-        elif self.random.random() < self.model.flowers_1_reproduce:
+        elif self.random.random() < self.model.flowers_1_reproduce + self.repr:
             x = self.random.randrange(self.model.width)
             y = self.random.randrange(self.model.height)
             energy = self.random.randrange(*self.model.flowers_1_existance)
@@ -73,7 +73,7 @@ class Flower_2(RandomStill):
             self.model.schedule.remove(self)
             living = False
 
-        elif self.random.random() < self.model.flowers_2_reproduce:
+        elif self.random.random() < self.model.flowers_2_reproduce + self.repr:
             x = self.random.randrange(self.model.width)
             y = self.random.randrange(self.model.height)
             energy = self.random.randrange(*self.model.flowers_2_existance)
@@ -105,7 +105,7 @@ class Flower_3(RandomStill):
             self.model.schedule.remove(self)
             living = False
 
-        elif self.random.random() < self.model.flowers_3_reproduce:
+        elif self.random.random() < self.model.flowers_3_reproduce + self.repr:
             x = self.random.randrange(self.model.width)
             y = self.random.randrange(self.model.height)
             energy = self.random.randrange(*self.model.flowers_3_existance)
