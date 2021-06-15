@@ -37,8 +37,10 @@ def bee_flower_portrayal(agent):
 
 canvas_element = CanvasGrid(bee_flower_portrayal, 30, 30, 500, 500)
 chart_element = ChartModule(
-    [{"Label": "Bee", "Color": "#AA0000"}, {"Label": "Flower_1", "Color": "#666666"},
-     {"Label": "Flower_2", "Color": "#AA4444"}, {"Label": "Flower_3", "Color": "#AA8888"}]
+    [#{"Label": "Bee", "Color": "#AA0000"},
+     {"Label": "Flower_1", "Color": "#666666"},
+     {"Label": "Flower_2", "Color": "#AA4444"},
+     {"Label": "Flower_3", "Color": "#AA8888"}]
 )
 
 model_params = {
