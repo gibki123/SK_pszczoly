@@ -7,11 +7,9 @@ class Bee(RandomWalker):
     """
     A Bee that flies randomly, when sit on flower it produces honey and gain Energy
     """
-    pylek = None
 
-    def __init__(self, unique_id, pos, model, pylek = 0):
+    def __init__(self, unique_id, pos, model):
         super().__init__(unique_id, pos, model)
-        self.pylek = pylek
 
     def step(self):
 
@@ -21,8 +19,8 @@ class Bee(RandomWalker):
         this_cell = self.model.grid.get_cell_list_contents([self.pos])
         flower_patch = [obj for obj in this_cell if isinstance(obj, Flower_1)]
         for i in flower_patch:
-            self.pylek += 1
             i.repr += 0.001
+
 
 
 

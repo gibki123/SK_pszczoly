@@ -101,7 +101,6 @@ class BeeFlower(Model):
                 "Flower_1": lambda m: m.schedule.get_breed_count(Flower_1),
                 "Flower_2": lambda m: m.schedule.get_breed_count(Flower_2),
                 "Flower_3": lambda m: m.schedule.get_breed_count(Flower_3),
-                "Honey": lambda m: m.schedule.get_breed_count(Honey),
             }
         )
 

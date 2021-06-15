@@ -27,11 +27,6 @@ def bee_flower_portrayal(agent):
         portrayal["scale"] = 0.9
         portrayal["Layer"] = 0
 
-    if type(agent) is Honey:
-        portrayal["Shape"] = "bee_flower/resources/sheep.png"
-        portrayal["scale"] = 0.9
-        portrayal["Layer"] = 0
-
     elif type(agent) is Bee:
         portrayal["Shape"] = "bee_flower/resources/bee.png"
         portrayal["scale"] = 0.9
@@ -44,9 +39,6 @@ canvas_element = CanvasGrid(bee_flower_portrayal, 30, 30, 500, 500)
 chart_element = ChartModule(
     [{"Label": "Bee", "Color": "#AA0000"}, {"Label": "Flower_1", "Color": "#666666"},
      {"Label": "Flower_2", "Color": "#AA4444"}, {"Label": "Flower_3", "Color": "#AA8888"}]
-)
-chart_element_1 = ChartModule(
-    [{"Label": "Honey", "Color": "EE0000"}]
 )
 
 model_params = {
@@ -74,6 +66,6 @@ model_params = {
 }
 
 server = ModularServer(
-    BeeFlower, [canvas_element, chart_element, chart_element_1], "Bee Production", model_params
+    BeeFlower, [canvas_element, chart_element], "Bee Production", model_params
 )
 server.port = 8521
