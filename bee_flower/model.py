@@ -145,10 +145,6 @@ class BeeFlower(Model):
         self.datacollector.collect(self)
 
     def step(self):
-        #bee = Bee(self.next_id(), (0, 0), self)
-        #self.schedule.add(bee)
-        for i in self.schedule.agents_by_breed(Bee):
-            print(i)
 
         self.schedule.step()
         # collect data

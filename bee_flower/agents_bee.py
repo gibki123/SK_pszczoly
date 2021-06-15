@@ -31,13 +31,15 @@ class Honey(RandomStill):
         super().__init__(unique_id, model)
 
 
+
 class Flower_1(RandomStill):
     """
     Flower which give small portion of honey, can reproduce randomly and die after few steps
     """
     energy = None
+    repr = 0
 
-    def __init__(self, unique_id, pos, model, energy=None, pollinated=False):
+    def __init__(self, unique_id, pos, model, energy=None):
         super().__init__(unique_id, pos, model)
         self.energy = energy
 
@@ -56,7 +58,16 @@ class Flower_1(RandomStill):
             self.model.grid._remove_agent(self.pos, self)
             self.model.schedule.remove(self)
             living = False
-
+        """
+        elif self.random.random() + repr < self.model.flower_1_reproduce:
+            x = self.random.randrange(self.width)
+            y = self.random.randrange(self.height)
+            lamb = Flower_1(
+                self.model.next_id(), (x,y), self.model, self.moore, self.energy
+            )
+            self.model.grid.place_agent(lamb, self.pos)
+            self.model.schedule.add(lamb)
+        """
 
 
 
