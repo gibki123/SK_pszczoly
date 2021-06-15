@@ -5,7 +5,7 @@ from bee_flower.random_stand import RandomStill
 
 class Bee(RandomWalker):
     """
-    A Bee that flies randomly, when sit on flower it produces honey and gain Energy
+    A Bee that flies randomly, and sits on flowers
     """
 
     def __init__(self, unique_id, pos, model):
@@ -21,7 +21,7 @@ class Bee(RandomWalker):
 
 class Flower_1(RandomStill):
     """
-    Flower which give small portion of honey, can reproduce randomly and die after few steps
+    Flower, can reproduce randomly and die after few steps
     """
     energy = None
     repr = 0
@@ -54,7 +54,7 @@ class Flower_1(RandomStill):
 
 class Flower_2(RandomStill):
     """
-    Flower which give medium portion of honey, can reproduce randomly and die after few steps
+    Flower, can reproduce randomly and die after few steps
     """
     energy = None
 
@@ -85,7 +85,7 @@ class Flower_2(RandomStill):
 
 class Flower_3(RandomStill):
     """
-    Flower which give large portion of honey, can reproduce randomly and die after few steps
+    Flower, can reproduce randomly and die after few steps
     """
     energy = None
 

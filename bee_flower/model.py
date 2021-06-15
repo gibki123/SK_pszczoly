@@ -13,7 +13,7 @@ from mesa import Model
 from mesa.space import MultiGrid
 from mesa.datacollection import DataCollector
 
-from bee_flower.agents_bee import Bee, Flower_1, Flower_2, Flower_3, Honey
+from bee_flower.agents_bee import Bee, Flower_1, Flower_2, Flower_3
 from bee_flower.schedule import RandomActivationByBreed
 
 
@@ -38,8 +38,6 @@ class BeeFlower(Model):
     flowers_2_existance = (10,20)
     flowers_3_existance = (10,20)
 
-    initial_honey = 1
-
     verbose = False  # Print-monitoring
 
     description = (
@@ -54,7 +52,6 @@ class BeeFlower(Model):
         initial_flowers_1=20,
         initial_flowers_2=20,
         initial_flowers_3=20,
-        initial_honey=1,
         flowers_1_reproduce=0.05,
         flowers_2_reproduce=0.05,
         flowers_3_reproduce=0.05,
@@ -85,7 +82,6 @@ class BeeFlower(Model):
         self.initial_flowers_1 = initial_flowers_1
         self.initial_flowers_2 = initial_flowers_2
         self.initial_flowers_3 = initial_flowers_3
-        self.initial_honey = initial_honey
         self.flowers_1_reproduce = flowers_1_reproduce
         self.flowers_2_reproduce = flowers_2_reproduce
         self.flowers_3_reproduce = flowers_3_reproduce

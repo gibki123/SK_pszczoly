@@ -2,7 +2,7 @@ from mesa.visualization.ModularVisualization import ModularServer
 from mesa.visualization.modules import CanvasGrid, ChartModule
 from mesa.visualization.UserParam import UserSettableParameter
 
-from bee_flower.agents_bee import Bee, Flower_1, Flower_2, Flower_3, Honey
+from bee_flower.agents_bee import Bee, Flower_1, Flower_2, Flower_3
 from bee_flower.model import BeeFlower
 
 
