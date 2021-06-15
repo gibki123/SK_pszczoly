@@ -14,7 +14,7 @@ class Bee(RandomWalker):
     def step(self):
         self.random_move()
         this_cell = self.model.grid.get_cell_list_contents([self.pos])
-        flower_patch = [obj for obj in this_cell if isinstance(obj, Flower_1)]
+        flower_patch = [obj for obj in this_cell if isinstance(obj, (Flower_1, Flower_2, Flower_3))]
         for i in flower_patch:
             i.repr += 0.01
 
@@ -57,6 +57,7 @@ class Flower_2(RandomStill):
     Flower, can reproduce randomly and die after few steps
     """
     energy = None
+    repr = 0
 
     def __init__(self, unique_id, pos, model, energy=None):
         super().__init__(unique_id, pos, model)
@@ -88,6 +89,7 @@ class Flower_3(RandomStill):
     Flower, can reproduce randomly and die after few steps
     """
     energy = None
+    repr = 0
 
     def __init__(self, unique_id, pos, model, energy=None):
         super().__init__(unique_id, pos, model)
