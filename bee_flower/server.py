@@ -2,7 +2,7 @@ from mesa.visualization.ModularVisualization import ModularServer
 from mesa.visualization.modules import CanvasGrid, ChartModule
 from mesa.visualization.UserParam import UserSettableParameter
 
-from bee_flower.agents_bee import Bee, Flower_1, Flower_2, Flower_3
+from bee_flower.agents_bee import Bee, Flower_1, Flower_2, Flower_3, Honey
 from bee_flower.model import BeeFlower
 
 
@@ -27,8 +27,13 @@ def bee_flower_portrayal(agent):
         portrayal["scale"] = 0.9
         portrayal["Layer"] = 0
 
+    if type(agent) is Honey:
+        portrayal["Shape"] = "bee_flower/resources/sheep.png"
+        portrayal["scale"] = 0.9
+        portrayal["Layer"] = 0
+
     elif type(agent) is Bee:
-        portrayal["Shape"] = "wolf_sheep/resources/bee.png"
+        portrayal["Shape"] = "bee_flower/resources/bee.png"
         portrayal["scale"] = 0.9
         portrayal["Layer"] = 1
 
@@ -39,6 +44,9 @@ canvas_element = CanvasGrid(bee_flower_portrayal, 30, 30, 500, 500)
 chart_element = ChartModule(
     [{"Label": "Bee", "Color": "#AA0000"}, {"Label": "Flower_1", "Color": "#666666"},
      {"Label": "Flower_2", "Color": "#AA4444"}, {"Label": "Flower_3", "Color": "#AA8888"}]
+)
+chart_element_1 = ChartModule(
+    [{"Label": "Honey", "Color": "EE0000"}]
 )
 
 model_params = {
@@ -66,6 +74,6 @@ model_params = {
 }
 
 server = ModularServer(
-    BeeFlower, [canvas_element, chart_element], "Bee Production", model_params
+    BeeFlower, [canvas_element, chart_element, chart_element_1], "Bee Production", model_params
 )
 server.port = 8521

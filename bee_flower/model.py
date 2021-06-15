@@ -13,7 +13,7 @@ from mesa import Model
 from mesa.space import MultiGrid
 from mesa.datacollection import DataCollector
 
-from bee_flower.agents_bee import Bee, Flower_1, Flower_2, Flower_3
+from bee_flower.agents_bee import Bee, Flower_1, Flower_2, Flower_3, Honey
 from bee_flower.schedule import RandomActivationByBreed
 
 
@@ -38,6 +38,8 @@ class BeeFlower(Model):
     flowers_2_existance = (10,20)
     flowers_3_existance = (10,20)
 
+    initial_honey = 1
+
     verbose = False  # Print-monitoring
 
     description = (
@@ -52,6 +54,7 @@ class BeeFlower(Model):
         initial_flowers_1=20,
         initial_flowers_2=20,
         initial_flowers_3=20,
+        initial_honey=1,
         flowers_1_reproduce=0.05,
         flowers_2_reproduce=0.05,
         flowers_3_reproduce=0.05,
@@ -82,6 +85,7 @@ class BeeFlower(Model):
         self.initial_flowers_1 = initial_flowers_1
         self.initial_flowers_2 = initial_flowers_2
         self.initial_flowers_3 = initial_flowers_3
+        self.initial_honey = initial_honey
         self.flowers_1_reproduce = flowers_1_reproduce
         self.flowers_2_reproduce = flowers_2_reproduce
         self.flowers_3_reproduce = flowers_3_reproduce
@@ -97,6 +101,7 @@ class BeeFlower(Model):
                 "Flower_1": lambda m: m.schedule.get_breed_count(Flower_1),
                 "Flower_2": lambda m: m.schedule.get_breed_count(Flower_2),
                 "Flower_3": lambda m: m.schedule.get_breed_count(Flower_3),
+                "Honey": lambda m: m.schedule.get_breed_count(Honey),
             }
         )
 
@@ -109,7 +114,7 @@ class BeeFlower(Model):
             self.grid.place_agent(flower, (x, y))
             self.schedule.add(flower)
 
-        # Create Flower_1:
+        # Create Flower_2:
         for i in range(self.initial_flowers_2):
             x = self.random.randrange(self.width)
             y = self.random.randrange(self.height)
@@ -118,7 +123,7 @@ class BeeFlower(Model):
             self.grid.place_agent(flower, (x, y))
             self.schedule.add(flower)
 
-        # Create Flower_1:
+        # Create Flower_3:
         for i in range(self.initial_flowers_3):
             x = self.random.randrange(self.width)
             y = self.random.randrange(self.height)
@@ -127,10 +132,24 @@ class BeeFlower(Model):
             self.grid.place_agent(flower, (x, y))
             self.schedule.add(flower)
 
+        # Create Bee:
+        for i in range(self.initial_bees):
+            x = self.random.randrange(self.width)
+            y = self.random.randrange(self.height)
+            self.pylek = 0
+            bee = Bee(self.next_id(), (x, y), self)
+            self.grid.place_agent(bee, (x, y))
+            self.schedule.add(bee)
+
         self.running = True
         self.datacollector.collect(self)
 
     def step(self):
+        #bee = Bee(self.next_id(), (0, 0), self)
+        #self.schedule.add(bee)
+        for i in self.schedule.agents_by_breed(Bee):
+            print(i)
+
         self.schedule.step()
         # collect data
         self.datacollector.collect(self)
@@ -138,13 +157,19 @@ class BeeFlower(Model):
             print(
                 [
                     self.schedule.time,
-                    # self.schedule.get_breed_count(Bee),
+                    self.schedule.get_breed_count(Bee),
                     self.schedule.get_breed_count(Flower_1),
                     self.schedule.get_breed_count(Flower_2),
                     self.schedule.get_breed_count(Flower_3),
                 ]
             )
 
+
+
+
+
     def run_model(self, step_count=200):
         for i in range(step_count):
             self.step()
+
+
