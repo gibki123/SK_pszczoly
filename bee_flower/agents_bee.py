@@ -52,16 +52,16 @@ class Flower_1(RandomStill):
             self.model.schedule.remove(self)
             living = False
 
-        """
-        elif self.random.random() + repr < self.model.flower_1_reproduce:
-            x = self.random.randrange(self.width)
-            y = self.random.randrange(self.height)
+        #"""
+        elif self.random.random()< self.model.flowers_1_reproduce:
+            #x = self.random.randrange(self.width)
+            #y = self.random.randrange(self.height)
             lamb = Flower_1(
-                self.model.next_id(), (x,y), self.model, self.moore, self.energy
+                self.model.next_id(), (0,0), self.model, self.energy
             )
             self.model.grid.place_agent(lamb, self.pos)
             self.model.schedule.add(lamb)
-        """
+        #"""
 
 
 
