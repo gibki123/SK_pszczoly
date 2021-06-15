@@ -160,11 +160,6 @@ class BeeFlower(Model):
             )
 
 
-
-
-
     def run_model(self, step_count=200):
         for i in range(step_count):
             self.step()
-
-

@@ -12,23 +12,11 @@ class Bee(RandomWalker):
         super().__init__(unique_id, pos, model)
 
     def step(self):
-
         self.random_move()
-
-        # If there is grass available, eat it
         this_cell = self.model.grid.get_cell_list_contents([self.pos])
         flower_patch = [obj for obj in this_cell if isinstance(obj, Flower_1)]
         for i in flower_patch:
             i.repr += 0.01
-
-
-
-
-class Honey(RandomStill):
-
-    def __init__(self, unique_id, model):
-        super().__init__(unique_id, model)
-
 
 
 class Flower_1(RandomStill):
@@ -53,7 +41,6 @@ class Flower_1(RandomStill):
             self.model.schedule.remove(self)
             living = False
 
-        #"""
         elif self.random.random() < self.model.flowers_1_reproduce:
             x = self.random.randrange(self.model.width)
             y = self.random.randrange(self.model.height)
@@ -63,8 +50,6 @@ class Flower_1(RandomStill):
             )
             self.model.grid.place_agent(lamb, (x,y))
             self.model.schedule.add(lamb)
-        #"""
-
 
 
 class Flower_2(RandomStill):
@@ -87,7 +72,6 @@ class Flower_2(RandomStill):
             self.model.schedule.remove(self)
             living = False
 
-        # """
         elif self.random.random() < self.model.flowers_2_reproduce:
             x = self.random.randrange(self.model.width)
             y = self.random.randrange(self.model.height)
@@ -97,7 +81,7 @@ class Flower_2(RandomStill):
             )
             self.model.grid.place_agent(lamb, (x, y))
             self.model.schedule.add(lamb)
-        # """
+
 
 class Flower_3(RandomStill):
     """
@@ -119,7 +103,6 @@ class Flower_3(RandomStill):
             self.model.schedule.remove(self)
             living = False
 
-        # """
         elif self.random.random() < self.model.flowers_3_reproduce:
             x = self.random.randrange(self.model.width)
             y = self.random.randrange(self.model.height)
@@ -129,4 +112,3 @@ class Flower_3(RandomStill):
             )
             self.model.grid.place_agent(lamb, (x, y))
             self.model.schedule.add(lamb)
-        # """
